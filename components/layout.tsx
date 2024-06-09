@@ -1,15 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import {
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  Search,
-  ShoppingCart,
-  Users2,
-  Settings,
-} from 'lucide-react';
+import { Home, Search, Settings, Code, Waypoints } from 'lucide-react';
+
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 import {
   Breadcrumb,
@@ -31,6 +24,34 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import { Separator } from './ui/separator';
+
+let mockTopics = [
+  { id: 1, name: 'Tech', icon: Code, href: '#' },
+  { id: 2, name: 'Game of life', icon: Waypoints, href: '#' },
+];
+// Make like 50 of these
+let mockPosts = [
+  { id: 1, title: 'Post 1Some cool text in the title man', href: '#' },
+  { id: 2, title: 'Post 2Some cool text in the title man', href: '#' },
+  { id: 3, title: 'Post 3Some cool text in the title man', href: '#' },
+  { id: 4, title: 'Post 4Some cool text in the title man', href: '#' },
+  { id: 5, title: 'Post 5Some cool text in the title man', href: '#' },
+  { id: 6, title: 'Post 6Some cool text in the title man', href: '#' },
+  { id: 7, title: 'Post 7Some cool text in the title man', href: '#' },
+  { id: 8, title: 'Post 8Some cool text in the title man', href: '#' },
+  { id: 9, title: 'Post 9Some cool text in the title man', href: '#' },
+
+  { id: 31, title: 'Post 31Some cool text in the title man', href: '#' },
+  { id: 32, title: 'Post 32Some cool text in the title man', href: '#' },
+  { id: 33, title: 'Post 33Some cool text in the title man', href: '#' },
+  { id: 34, title: 'Post 34Some cool text in the title man', href: '#' },
+  { id: 35, title: 'Post 35Some cool text in the title man', href: '#' },
+  { id: 36, title: 'Post 36Some cool text in the title man', href: '#' },
+  { id: 37, title: 'Post 37Some cool text in the title man', href: '#' },
+  { id: 38, title: 'Post 38Some cool text in the title man', href: '#' },
+  { id: 39, title: 'Post 39Some cool text in the title man', href: '#' },
+];
 
 export default function Layout() {
   return (
@@ -41,62 +62,43 @@ export default function Layout() {
             href="#"
             className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
             <div className="flex items-center justify-center rounded-full h-9 w-9 bg-primary">
-              <Package2 className="h-4 w-4 text-lg font-semibold text-primary-foreground transition-all group-hover/link:scale-110" />
+              <Home className="h-4 w-4 text-lg font-semibold text-primary-foreground transition-all group-hover/link:scale-110" />
             </div>
             <span className="absolute -left-4 group-hover/side:left-10 opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
               Vanu&apos;s Blog
             </span>
           </Link>
-          <Link
-            href="#"
-            className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
-            <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
-              <Home className="h-4 w-4 transition-all group-hover/link:scale-110" />
-            </div>
-            <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
-              Home
-            </span>
-          </Link>
-          <Link
-            href="#"
-            className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
-            <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
-              <ShoppingCart className="h-4 w-4 transition-all group-hover/link:scale-110" />
-            </div>
-            <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
-              Orders
-            </span>
-          </Link>
-          <Link
-            href="#"
-            className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
-            <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
-              <Package className="h-4 w-4 transition-all group-hover/link:scale-110" />
-            </div>
-            <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
-              Products
-            </span>
-          </Link>
-          <Link
-            href="#"
-            className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
-            <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
-              <Users2 className="h-4 w-4 transition-all group-hover/link:scale-110" />
-            </div>
-            <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
-              Customers
-            </span>
-          </Link>
-          <Link
-            href="#"
-            className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
-            <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
-              <LineChart className="h-4 w-4 transition-all group-hover/link:scale-110" />
-            </div>
-            <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
-              Analytics
-            </span>
-          </Link>
+
+          {mockTopics.map((topic) => (
+            <>
+              <Link
+                key={topic.id}
+                href={topic.href}
+                className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
+                <div className="flex items-center justify-center rounded-full h-9 w-9 transition-colors text-muted-foreground group-hover/link:text-foreground md:h-8 md:w-8">
+                  <topic.icon className="h-4 w-4 transition-all group-hover/link:scale-110" />
+                </div>
+                <span className="absolute -left-4 group-hover/side:left-10 text-muted-foreground group-hover/link:text-foreground opacity-0 group-hover/side:opacity-100 trasition-all duration-150 ml-2 group-hover/side:delay-150">
+                  {topic.name}
+                </span>
+              </Link>
+
+              <ScrollArea className="hidden group-hover/side:block h-64 w-full">
+                {mockPosts.map((post) => (
+                  <>
+                    <Link
+                      key={post.id}
+                      href={post.href}
+                      className="text-muted-foreground flex ml-6 mb-3 mr-2">
+                      <span className="">{post.title}</span>
+                    </Link>
+                  </>
+                ))}
+              </ScrollArea>
+
+              <Separator />
+            </>
+          ))}
         </nav>
         <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
           <Link

@@ -1,3 +1,25 @@
+# My blog app
+
+##TODO
+
+- [x] Make it deploy
+- [ ] Scaffold basic ui with mock data
+
+  - [x] Modify side nav (done for now)
+  - [ ] Modify top nav
+  - [ ] Post page
+    - [ ] Post content
+    - [ ] Comment section
+  - [ ] Topic/Search/Home page component with search feature
+  - [ ] Settings page (maybe use clerk instead of Next.js)
+
+- [ ] Setup database
+- [ ] Attach database to UI
+- [ ] Add auth
+- [ ] Routing/post page (parallel route?)
+- [ ] Error management (w/ Sentry)
+- [ ] Analytics (posthog)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
