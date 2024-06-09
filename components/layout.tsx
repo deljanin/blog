@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Home, Search, Settings, Code, Waypoints } from 'lucide-react';
 
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 import {
   Breadcrumb,
@@ -25,6 +25,7 @@ import {
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { Separator } from './ui/separator';
+import DynamicBreadcrumb from './dynamicBreadcrumb';
 
 let mockTopics = [
   { id: 1, name: 'Tech', icon: Code, href: '#' },
@@ -59,7 +60,7 @@ export default function Layout() {
       <aside className="group/side fixed inset-y-0 left-0 z-15 w-14 hover:w-56 flex flex-col border-r bg-background transition-all duration-400 sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
           <Link
-            href="#"
+            href="/"
             className="relative group/link flex items-center justify-center group-hover/side:justify-start w-full text-lg font-semibold  md:text-base">
             <div className="flex items-center justify-center rounded-full h-9 w-9 bg-primary">
               <Home className="h-4 w-4 text-lg font-semibold text-primary-foreground transition-all group-hover/link:scale-110" />
@@ -82,7 +83,6 @@ export default function Layout() {
                   {topic.name}
                 </span>
               </Link>
-
               <ScrollArea className="hidden group-hover/side:block h-64 w-full">
                 {mockPosts.map((post) => (
                   <>
@@ -95,7 +95,6 @@ export default function Layout() {
                   </>
                 ))}
               </ScrollArea>
-
               <Separator />
             </>
           ))}
@@ -115,25 +114,7 @@ export default function Layout() {
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <header className="sticky top-0 z-5 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-          <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Dashboard</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Orders</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <DynamicBreadcrumb />
           <div className="relative ml-auto flex-1 md:grow-0">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
