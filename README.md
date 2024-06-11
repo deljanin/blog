@@ -6,7 +6,7 @@
 - [ ] Scaffold basic ui with mock data
 
   - [x] Modify side nav (done for now)
-  - [ ] Modify top nav
+  - [x] Modify top nav
   - [ ] Post page
     - [ ] Post content
     - [ ] Comment section
