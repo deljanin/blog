@@ -8,7 +8,7 @@
   - [x] Modify side nav (done for now)
   - [x] Modify top nav
   - [ ] Post page
-    - [ ] Post content
+    - [x] Post content
     - [ ] Comment section
   - [ ] Topic/Search/Home page component with search feature
   - [ ] Settings page (maybe use clerk instead of Next.js)

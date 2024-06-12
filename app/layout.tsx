@@ -9,12 +9,19 @@ import {
   Code,
   Waypoints,
   CircleUser,
+  Menu,
 } from 'lucide-react';
 
 import { ScrollArea } from '@/components/ui/scroll-area';
-
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,25 +40,61 @@ let mockTopics = [
 ];
 // Make like 50 of these
 let mockPosts = [
-  { id: 1, title: 'Post 1Some cool text in the title man', href: '#' },
-  { id: 2, title: 'Post 2Some cool text in the title man', href: '#' },
-  { id: 3, title: 'Post 3Some cool text in the title man', href: '#' },
-  { id: 4, title: 'Post 4Some cool text in the title man', href: '#' },
-  { id: 5, title: 'Post 5Some cool text in the title man', href: '#' },
-  { id: 6, title: 'Post 6Some cool text in the title man', href: '#' },
-  { id: 7, title: 'Post 7Some cool text in the title man', href: '#' },
-  { id: 8, title: 'Post 8Some cool text in the title man', href: '#' },
-  { id: 9, title: 'Post 9Some cool text in the title man', href: '#' },
+  { id: 1, title: 'Post 1Some cool text in the title man', href: '/posts/1' },
+  { id: 2, title: 'Post 2Some cool text in the title man', href: '/posts/2' },
+  { id: 3, title: 'Post 3Some cool text in the title man', href: '/posts/3' },
+  { id: 4, title: 'Post 4Some cool text in the title man', href: '/posts/4' },
+  { id: 5, title: 'Post 5Some cool text in the title man', href: '/posts/5' },
+  { id: 6, title: 'Post 6Some cool text in the title man', href: '/posts/6' },
+  { id: 7, title: 'Post 7Some cool text in the title man', href: '/posts/7' },
+  { id: 8, title: 'Post 8Some cool text in the title man', href: '/posts/8' },
+  { id: 9, title: 'Post 9Some cool text in the title man', href: '/posts/9' },
 
-  { id: 31, title: 'Post 31Some cool text in the title man', href: '#' },
-  { id: 32, title: 'Post 32Some cool text in the title man', href: '#' },
-  { id: 33, title: 'Post 33Some cool text in the title man', href: '#' },
-  { id: 34, title: 'Post 34Some cool text in the title man', href: '#' },
-  { id: 35, title: 'Post 35Some cool text in the title man', href: '#' },
-  { id: 36, title: 'Post 36Some cool text in the title man', href: '#' },
-  { id: 37, title: 'Post 37Some cool text in the title man', href: '#' },
-  { id: 38, title: 'Post 38Some cool text in the title man', href: '#' },
-  { id: 39, title: 'Post 39Some cool text in the title man', href: '#' },
+  {
+    id: 31,
+    title: 'Post 31Some cool text in the title man',
+    href: '/posts/31',
+  },
+  {
+    id: 32,
+    title: 'Post 32Some cool text in the title man',
+    href: '/posts/32',
+  },
+  {
+    id: 33,
+    title: 'Post 33Some cool text in the title man',
+    href: '/posts/33',
+  },
+  {
+    id: 34,
+    title: 'Post 34Some cool text in the title man',
+    href: '/posts/34',
+  },
+  {
+    id: 35,
+    title: 'Post 35Some cool text in the title man',
+    href: '/posts/35',
+  },
+  {
+    id: 36,
+    title: 'Post 36Some cool text in the title man',
+    href: '/posts/36',
+  },
+  {
+    id: 37,
+    title: 'Post 37Some cool text in the title man',
+    href: '/posts/37',
+  },
+  {
+    id: 38,
+    title: 'Post 38Some cool text in the title man',
+    href: '/posts/38',
+  },
+  {
+    id: 39,
+    title: 'Post 39Some cool text in the title man',
+    href: '/posts/39',
+  },
 ];
 
 const inter = Inter({ subsets: ['latin'] });
@@ -85,7 +128,7 @@ export default function RootLayout({
             </Button> */}
               </div>
               <div className="flex-1">
-                <nav className="grid items-start px-2 gap-3 text-sm font-medium lg:px-4">
+                <nav className="flex flex-col px-2 gap-3 text-sm font-medium lg:px-4">
                   {mockTopics.map((topic) => (
                     <>
                       <div>
@@ -126,7 +169,49 @@ export default function RootLayout({
             </div>
           </div>
           <div className="flex flex-col overflow-y-auto">
-            <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+            <header className="flex h-14 flex-shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="shrink-0 md:hidden">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="flex flex-col">
+                  <nav className="grid gap-2 text-lg font-medium">
+                    {mockTopics.map((topic) => (
+                      <>
+                        <div>
+                          <Link
+                            key={topic.id}
+                            href={topic.href}
+                            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                            <topic.icon className="h-4 w-4" />
+                            {topic.name}
+                          </Link>
+                          <Separator />
+
+                          <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
+                            {mockPosts.map((post) => (
+                              <>
+                                <Link
+                                  key={post.id}
+                                  href={post.href}
+                                  className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
+                                  <span className="">{post.title}</span>
+                                </Link>
+                              </>
+                            ))}
+                          </ScrollArea>
+                        </div>
+                      </>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
               <div className="w-full flex-1">
                 <form>
                   <div className="relative">
