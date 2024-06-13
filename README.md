@@ -10,11 +10,14 @@
   - [ ] Post page
     - [x] Post content
     - [ ] Comment section
+  - [x] Topics page
+  - [ ] About page
   - [ ] Topic/Search/Home page component with search feature
   - [ ] Settings page (maybe use clerk instead of Next.js)
 
 - [ ] Setup database
 - [ ] Attach database to UI
+- [ ] Update dynamic breadcrumbs
 - [ ] Add auth
 - [ ] Routing/post page (parallel route?)
 - [ ] Error management (w/ Sentry)

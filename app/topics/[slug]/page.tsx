@@ -4,6 +4,6 @@ interface Params {
   slug: string;
 }
 
-export default function Topics({ params }: { params: Params }) {
+export default function Topic({ params }: { params: Params }) {
   return <div>Page {params.slug}</div>;
 }
