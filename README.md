@@ -7,13 +7,13 @@
 
   - [x] Modify side nav (done for now)
   - [x] Modify top nav
-  - [ ] Post page
+  - [x] Post page
     - [x] Post content
-    - [ ] Comment section
+    - [x] Comment section
   - [x] Topics page
   - [ ] About page
   - [ ] Topic/Search/Home page component with search feature
-  - [ ] Settings page (maybe use clerk instead of Next.js)
+  - [ ] Settings page (maybe use clerk instead of NextAuth)
 
 - [ ] Setup database
 - [ ] Attach database to UI
