@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import Link from 'next/link';
 
 interface Params {
   slug: string;
@@ -119,6 +120,46 @@ Happy coding!
       date: new Date(Date.now() - Math.floor(Math.random() * 10000000000)),
     },
   ];
+
+  let mockSimilarPosts = [
+    {
+      id: 1,
+      title: 'My journey learning TypeScript',
+      description:
+        'Learning TypeScript has been a great experience so far. It has helped me write cleaner and more maintainable code.',
+    },
+    {
+      id: 2,
+      title: 'Why I prefer using React over Angular',
+      description:
+        'I have used both React and Angular in the past, and I personally prefer React for its simplicity and flexibility.',
+    },
+    {
+      id: 3,
+      title: 'The benefits of using Next.js for building web applications',
+      description:
+        'Next.js is a great framework for building web applications. It offers features like server-side rendering, static site generation, and API routes, making it easy to build performant and scalable web applications.',
+    },
+    {
+      id: 4,
+      title: 'My thoughts on using Tailwind CSS for styling',
+      description:
+        'I have been using Tailwind CSS for a while now, and I really enjoy how easy it is to style components. It has greatly reduced the time and effort required for styling in my projects.',
+    },
+    {
+      id: 5,
+      title: 'Why I prefer using PostgreSQL over MySQL',
+      description:
+        'I have used both PostgreSQL and MySQL in the past, and I personally prefer PostgreSQL for its reliability, scalability, and advanced features.',
+    },
+    {
+      id: 6,
+      title: 'The importance of code reviews in improving code quality',
+      description:
+        'Code reviews are an essential part of a software development process. They help catch bugs, improve code quality, and promote collaboration among team members.',
+    },
+  ];
+
   const FormSchema = z.object({
     comment: z
       .string()
@@ -146,6 +187,26 @@ Happy coding!
           {mockPost}
         </Markdown>
         <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight  ">
+          Similar posts
+        </h2>
+        <div className="flex flex-col gap-4 mt-5 w-full">
+          {mockSimilarPosts.map((post) => (
+            <Link
+              href={`/posts/${post.id}`}
+              key={post.id}
+              className="w-full p-2 flex items-center justify-between rounded-lg transition-all border border-transparent hover:border hover:border-primary">
+              <div className="flex space-x-4">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">{post.title}</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {post.description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight  ">
           Comments
         </h2>
         <div className="flex flex-col gap-4 mt-5 w-full">
@@ -172,6 +233,7 @@ Happy coding!
               </div>
             </div>
           ))}
+
           <Separator />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -196,7 +258,7 @@ Happy coding!
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Post comment</Button>
             </form>
           </Form>
         </div>
