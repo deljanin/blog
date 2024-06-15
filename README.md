@@ -11,7 +11,7 @@
     - [x] Post content
     - [x] Comment section
   - [x] Topics page
-  - [ ] About page
+  - [x] About page
   - [ ] Topic/Search/Home page component with search feature
   - [ ] Settings page (maybe use clerk instead of NextAuth)
 

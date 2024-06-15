@@ -176,7 +176,7 @@ Happy coding!
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    // TODO: add comment to database
+    // TODO: add comment to database and refresh the page, check fireship course for how to do this
   }
   return (
     <>

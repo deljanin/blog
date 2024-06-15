@@ -114,12 +114,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          // disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="fixed inset-0  grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
             <div className=" hidden border-r bg-muted/40 md:block">
               <div className="flex h-full max-h-screen flex-col gap-2">
@@ -130,10 +125,6 @@ export default function RootLayout({
                     <Home className="h-6 w-6" />
                     <span className="">Da blog</span>
                   </Link>
-                  {/* <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
-              <Bell className="h-4 w-4" />
-              <span className="sr-only">Toggle notifications</span>
-            </Button> */}
                 </div>
                 <div className="flex-1">
                   <nav className="flex flex-col px-2 gap-3 text-sm font-medium lg:px-4">
@@ -236,6 +227,9 @@ export default function RootLayout({
                 </Sheet>
                 <DynamicBreadcrumb />
                 <div className="flex-1 flex items-center justify-end gap-4">
+                  <Link className="hidden md:block" href="/">
+                    Home
+                  </Link>
                   <Link className="hidden md:block" href="/topics">
                     Topics
                   </Link>
