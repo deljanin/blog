@@ -83,15 +83,13 @@ export default function Home() {
               <Card className="relative flex flex-col aspect-square items-center  overflow-hidden p-4  transition-all hover:border-primary">
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
-                  <CardDescription>
-                    <Breadcrumb className="pt-1">
-                      <BreadcrumbList>
-                        <BreadcrumbItem>{post.topic}</BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbPage>{post.thread}</BreadcrumbPage>
-                      </BreadcrumbList>
-                    </Breadcrumb>
-                  </CardDescription>
+                  <Breadcrumb className="pt-1">
+                    <BreadcrumbList>
+                      <BreadcrumbItem>{post.topic}</BreadcrumbItem>
+                      <BreadcrumbSeparator />
+                      <BreadcrumbPage>{post.thread}</BreadcrumbPage>
+                    </BreadcrumbList>
+                  </Breadcrumb>
                 </CardHeader>
                 <CardContent>
                   <p className="text-wrap ">
