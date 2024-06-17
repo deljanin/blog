@@ -13,12 +13,11 @@
   - [x] Topics page
   - [x] About page
   - [ ] Topic/Search/Home page component with search feature
-  - [ ] Settings page (maybe use clerk instead of NextAuth)
 
 - [ ] Setup database
 - [ ] Attach database to UI
 - [ ] Update dynamic breadcrumbs
-- [ ] Add auth
+- [ ] Add auth (clerk)
 - [ ] Routing/post page (parallel route?)
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)

@@ -17,13 +17,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -36,66 +29,74 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeSwitcher } from '@/components/theme-switcher';
+import trimString from '@/lib/utils/trimString';
 let mockTopics = [
-  { id: 1, name: 'Tech', icon: Code, href: '#' },
-  { id: 2, name: 'Game of life', icon: Waypoints, href: '#' },
+  { id: 1, name: 'Tech', icon: Code, href: '/topics#1' },
+  { id: 2, name: 'Game of life', icon: Waypoints, href: '/topics#2' },
 ];
-// Make like 50 of these
-let mockPosts = [
-  { id: 1, title: 'Post 1Some cool text in the title man', href: '/posts/1' },
-  { id: 2, title: 'Post 2Some cool text in the title man', href: '/posts/2' },
-  { id: 3, title: 'Post 3Some cool text in the title man', href: '/posts/3' },
-  { id: 4, title: 'Post 4Some cool text in the title man', href: '/posts/4' },
-  { id: 5, title: 'Post 5Some cool text in the title man', href: '/posts/5' },
-  { id: 6, title: 'Post 6Some cool text in the title man', href: '/posts/6' },
-  { id: 7, title: 'Post 7Some cool text in the title man', href: '/posts/7' },
-  { id: 8, title: 'Post 8Some cool text in the title man', href: '/posts/8' },
-  { id: 9, title: 'Post 9Some cool text in the title man', href: '/posts/9' },
+let mockThreads = [
+  { id: 1, title: 'The Future of Web Development', href: '/topics/1' },
+  { id: 2, title: 'The best way to learn React', href: '/topics/2' },
+  { id: 3, title: 'How to optimize your Next.js app', href: '/topics/3' },
+  {
+    id: 4,
+    title: 'The best CSS frameworks for web development',
+    href: '/topics/4',
+  },
+  { id: 5, title: 'The best book to learn TypeScript', href: '/topics/5' },
+  { id: 6, title: 'How to write clean and efficient code', href: '/topics/6' },
+  {
+    id: 7,
+    title: 'The best tools for frontend development',
+    href: '/topics/7',
+  },
+  { id: 8, title: 'How to manage your time effectively', href: '/topics/8' },
+  { id: 9, title: 'The best way to learn a new language', href: '/topics/9' },
 
   {
     id: 31,
-    title: 'Post 31Some cool text in the title man',
-    href: '/posts/31',
+    title: 'The best way to work remotely',
+    href: '/topics/31',
   },
   {
     id: 32,
-    title: 'Post 32Some cool text in the title man',
-    href: '/posts/32',
+    title: 'The best way to optimize your computer',
+    href: '/topics/32',
   },
   {
     id: 33,
-    title: 'Post 33Some cool text in the title man',
-    href: '/posts/33',
+    title: 'The best way to learn a new skill',
+    href: '/topics/33',
   },
   {
     id: 34,
-    title: 'Post 34Some cool text in the title man',
-    href: '/posts/34',
+    title: 'The best way to start a business',
+    href: '/topics/34',
   },
   {
     id: 35,
-    title: 'Post 35Some cool text in the title man',
-    href: '/posts/35',
+    title: 'The best way to manage your finances',
+    href: '/topics/35',
   },
   {
     id: 36,
-    title: 'Post 36Some cool text in the title man',
-    href: '/posts/36',
+    title: 'The best way to improve your mental health',
+    href: '/topics/36',
   },
   {
     id: 37,
-    title: 'Post 37Some cool text in the title man',
-    href: '/posts/37',
+    title: 'The best way to learn a new language',
+    href: '/topics/37',
   },
   {
     id: 38,
-    title: 'Post 38Some cool text in the title man',
-    href: '/posts/38',
+    title: 'The best way to improve your physical health',
+    href: '/topics/38',
   },
   {
     id: 39,
-    title: 'Post 39Some cool text in the title man',
-    href: '/posts/39',
+    title: 'The best way to learn a new skill',
+    href: '/topics/39',
   },
 ];
 
@@ -115,7 +116,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="fixed inset-0  grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+          <div className="fixed inset-0 grid min-h-screen w-full md:grid-cols-[280px_1fr] ">
             <div className=" hidden border-r bg-muted/40 md:block">
               <div className="flex h-full max-h-screen flex-col gap-2">
                 <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
@@ -141,13 +142,15 @@ export default function RootLayout({
                           <Separator />
 
                           <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
-                            {mockPosts.map((post) => (
+                            {mockThreads.map((thread) => (
                               <>
                                 <Link
-                                  key={post.id}
-                                  href={post.href}
+                                  key={thread.id}
+                                  href={thread.href}
                                   className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
-                                  <span className="">{post.title}</span>
+                                  <span className="">
+                                    {trimString(thread.title, 30)}
+                                  </span>
                                 </Link>
                               </>
                             ))}
@@ -167,7 +170,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col overflow-y-auto">
+            <div className="flex flex-col overflow-y-auto pb-16">
               <header className="flex h-14 flex-shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
                 <Sheet>
                   <SheetTrigger asChild>
@@ -208,13 +211,15 @@ export default function RootLayout({
                             <Separator />
 
                             <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
-                              {mockPosts.map((post) => (
+                              {mockThreads.map((thread) => (
                                 <>
                                   <Link
-                                    key={post.id}
-                                    href={post.href}
+                                    key={thread.id}
+                                    href={thread.href}
                                     className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
-                                    <span className="">{post.title}</span>
+                                    <span className="">
+                                      {trimString(thread.title, 30)}
+                                    </span>
                                   </Link>
                                 </>
                               ))}

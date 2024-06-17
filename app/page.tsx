@@ -1,25 +1,14 @@
-import * as React from 'react';
+import PostList from '@/components/post-list';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+type Post = {
+  id: number;
+  title: string;
+  description: string;
+  topic: string;
+  thread: string;
+};
 
-import Link from 'next/link';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import trimString from '@/lib/utils/trimString';
-
-let mockLatestPosts = [
+let mockLatestPosts: Post[] = [
   {
     id: 1,
     title: 'My journey learning TypeScript',
@@ -76,33 +65,8 @@ export default function Home() {
       <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block bg-gradient-to-r from-purple-500 to-primary inline-block text-transparent bg-clip-text">
         Latest posts
       </h1>
-      <div className="flex flex-wrap justify-center gap-2 align-center w-full">
-        {mockLatestPosts.map((post, index) => (
-          <div key={post.id} className="w-[430px]">
-            <Link href={`/posts/${post.id}`} key={post.id}>
-              <Card className="relative flex flex-col aspect-square items-center  overflow-hidden p-4  transition-all hover:border-primary">
-                <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                  <Breadcrumb className="pt-1">
-                    <BreadcrumbList>
-                      <BreadcrumbItem>{post.topic}</BreadcrumbItem>
-                      <BreadcrumbSeparator />
-                      <BreadcrumbPage>{post.thread}</BreadcrumbPage>
-                    </BreadcrumbList>
-                  </Breadcrumb>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-wrap ">
-                    {trimString(post.description, 280)}
-                  </p>
-                </CardContent>
-                {/* <span className="absolute bottom-4 opacity-10">
-                  {index + 1}
-                </span> */}
-              </Card>
-            </Link>
-          </div>
-        ))}
+      <div className="flex flex-wrap justify-center gap-4 align-center w-full">
+        <PostList posts={mockLatestPosts} />
       </div>
     </main>
   );
