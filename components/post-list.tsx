@@ -20,8 +20,9 @@ type Post = {
   id: number;
   title: string;
   description: string;
-  topic: string;
-  thread: string;
+  slug: string;
+  topic?: string;
+  thread?: string;
 };
 type PostListProps = {
   posts: Post[];
@@ -33,7 +34,7 @@ export default function PostList({ posts, breadcrumbs = true }: PostListProps) {
     <div className="flex flex-wrap justify-center gap-4 align-center w-full">
       {posts.map((post) => (
         <div key={post.id} className="w-[430px] mx-3 sm:mx-0 ">
-          <Link href={`/posts/${post.id}`} key={post.id}>
+          <Link href={`/posts/${post.slug}`} key={post.id}>
             <Card className=" flex flex-col sm:aspect-square items-center overflow-hidden p-4 hover:scale-105 transition-all hover:border-primary">
               <CardHeader>
                 <CardTitle>{post.title}</CardTitle>

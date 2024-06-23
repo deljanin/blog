@@ -11,8 +11,6 @@ import {
   CircleUser,
   Menu,
 } from 'lucide-react';
-import DynamicBreadcrumb from '@/components/dynamic-breadcrumb';
-
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -25,80 +23,28 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import trimString from '@/lib/utils/trimString';
+import { db } from '@/lib/drizzle/drizzleClient';
 let mockTopics = [
   { id: 1, name: 'Tech', icon: Code, href: '/topics#1' },
   { id: 2, name: 'Game of life', icon: Waypoints, href: '/topics#2' },
 ];
-let mockThreads = [
-  { id: 1, title: 'The Future of Web Development', href: '/topics/1' },
-  { id: 2, title: 'The best way to learn React', href: '/topics/2' },
-  { id: 3, title: 'How to optimize your Next.js app', href: '/topics/3' },
-  {
-    id: 4,
-    title: 'The best CSS frameworks for web development',
-    href: '/topics/4',
-  },
-  { id: 5, title: 'The best book to learn TypeScript', href: '/topics/5' },
-  { id: 6, title: 'How to write clean and efficient code', href: '/topics/6' },
-  {
-    id: 7,
-    title: 'The best tools for frontend development',
-    href: '/topics/7',
-  },
-  { id: 8, title: 'How to manage your time effectively', href: '/topics/8' },
-  { id: 9, title: 'The best way to learn a new language', href: '/topics/9' },
 
-  {
-    id: 31,
-    title: 'The best way to work remotely',
-    href: '/topics/31',
-  },
-  {
-    id: 32,
-    title: 'The best way to optimize your computer',
-    href: '/topics/32',
-  },
-  {
-    id: 33,
-    title: 'The best way to learn a new skill',
-    href: '/topics/33',
-  },
-  {
-    id: 34,
-    title: 'The best way to start a business',
-    href: '/topics/34',
-  },
-  {
-    id: 35,
-    title: 'The best way to manage your finances',
-    href: '/topics/35',
-  },
-  {
-    id: 36,
-    title: 'The best way to improve your mental health',
-    href: '/topics/36',
-  },
-  {
-    id: 37,
-    title: 'The best way to learn a new language',
-    href: '/topics/37',
-  },
-  {
-    id: 38,
-    title: 'The best way to improve your physical health',
-    href: '/topics/38',
-  },
-  {
-    id: 39,
-    title: 'The best way to learn a new skill',
-    href: '/topics/39',
-  },
-];
+const iconMap: { [key: string]: React.ComponentType<any> } = {
+  Code: Code,
+  Waypoints: Waypoints,
+  // Add more icon mappings here
+};
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -107,11 +53,14 @@ export const metadata: Metadata = {
   description: 'Blog about tech, coding, learning, business and life.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const topics = await db.query.topic.findMany();
+  const threads = await db.query.thread.findMany();
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -129,35 +78,50 @@ export default function RootLayout({
                 </div>
                 <div className="flex-1">
                   <nav className="flex flex-col px-2 gap-3 text-sm font-medium lg:px-4">
-                    {mockTopics.map((topic) => (
-                      <>
-                        <div>
-                          <Link
-                            key={topic.id}
-                            href={topic.href}
-                            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
-                            <topic.icon className="h-4 w-4" />
-                            {topic.name}
-                          </Link>
-                          <Separator />
+                    {topics.map((topic) => {
+                      const IconComponent = iconMap[topic.icon];
+                      const topicThreads = threads.filter(
+                        (thread) => thread.topicId === topic.id
+                      );
+                      return (
+                        <>
+                          <div>
+                            <Link
+                              key={topic.id}
+                              href={`/topics#${topic.slug}`}
+                              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                              {IconComponent && (
+                                <IconComponent className="h-4 w-4" />
+                              )}
+                              {topic.title}
+                            </Link>
+                            <Separator />
 
-                          <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
-                            {mockThreads.map((thread) => (
-                              <>
-                                <Link
-                                  key={thread.id}
-                                  href={thread.href}
-                                  className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
-                                  <span className="">
-                                    {trimString(thread.title, 30)}
-                                  </span>
-                                </Link>
-                              </>
-                            ))}
-                          </ScrollArea>
-                        </div>
-                      </>
-                    ))}
+                            <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
+                              {topicThreads.map((thread) => (
+                                <>
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <Link
+                                          key={thread.id}
+                                          href={`/topics/${thread.slug}`}
+                                          className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
+                                          {trimString(thread.title, 30)}
+                                        </Link>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>{thread.title}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                </>
+                              ))}
+                            </ScrollArea>
+                          </div>
+                        </>
+                      );
+                    })}
                   </nav>
                 </div>
                 <div className="mt-auto p-4">
@@ -198,39 +162,46 @@ export default function RootLayout({
                       </Link>
                     </div>
                     <nav className="grid gap-2 text-lg font-medium">
-                      {mockTopics.map((topic) => (
-                        <>
-                          <div>
-                            <Link
-                              key={topic.id}
-                              href={topic.href}
-                              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
-                              <topic.icon className="h-4 w-4" />
-                              {topic.name}
-                            </Link>
-                            <Separator />
+                      {topics.map((topic) => {
+                        const IconComponent = iconMap[topic.icon];
+                        const topicThreads = threads.filter(
+                          (thread) => thread.topicId === topic.id
+                        );
+                        return (
+                          <>
+                            <div>
+                              <Link
+                                key={topic.id}
+                                href={`/topics#${topic.slug}`}
+                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                                {IconComponent && (
+                                  <IconComponent className="h-4 w-4" />
+                                )}
+                                {topic.title}
+                              </Link>
+                              <Separator />
 
-                            <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
-                              {mockThreads.map((thread) => (
-                                <>
-                                  <Link
-                                    key={thread.id}
-                                    href={thread.href}
-                                    className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
-                                    <span className="">
-                                      {trimString(thread.title, 30)}
-                                    </span>
-                                  </Link>
-                                </>
-                              ))}
-                            </ScrollArea>
-                          </div>
-                        </>
-                      ))}
+                              <ScrollArea className="ml-2 py-1 h-64 w-full rounded-lg ">
+                                {topicThreads.map((thread) => (
+                                  <>
+                                    <Link
+                                      key={thread.id}
+                                      href={`/topics/${thread.slug}`}
+                                      className="flex ml-4 py-2 text-muted-foreground transition-all hover:text-primary">
+                                      <span className="">
+                                        {trimString(thread.title, 30)}
+                                      </span>
+                                    </Link>
+                                  </>
+                                ))}
+                              </ScrollArea>
+                            </div>
+                          </>
+                        );
+                      })}
                     </nav>
                   </SheetContent>
                 </Sheet>
-                <DynamicBreadcrumb />
                 <div className="flex-1 flex items-center justify-end gap-4">
                   <Link className="hidden md:block" href="/">
                     Home
@@ -277,6 +248,7 @@ export default function RootLayout({
                 </DropdownMenu>
                 <ThemeSwitcher />
               </header>
+              {/* <div className="md:pr-[280px]">{children}</div> */}
               {children}
             </div>
           </div>
