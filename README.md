@@ -22,6 +22,7 @@
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
 - [ ] Meta tags
+- [ ] Update README
 - [ ] Add a notification and a reply systems. So that an Admin can reply to other users and then they get an email notification so that they come and check the reply.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
