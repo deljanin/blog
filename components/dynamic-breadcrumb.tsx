@@ -11,10 +11,10 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function DynamicBreadcrumb() {
-  const paths = usePathname();
-  const pathNames = paths.split('/').filter((path) => path);
-
+type Props = {
+  pathNames: string[];
+};
+export default function DynamicBreadcrumb({ pathNames }: Props) {
   function createBreadcrumbs() {
     return pathNames.map((path, index) => {
       if (index !== pathNames.length - 1) {
@@ -22,7 +22,7 @@ export default function DynamicBreadcrumb() {
           <>
             <BreadcrumbItem key={index}>
               <BreadcrumbLink asChild>
-                <Link href={`/${path}`}>{path}</Link>
+                <span>{path}</span>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -32,7 +32,7 @@ export default function DynamicBreadcrumb() {
         return (
           <BreadcrumbItem key={index}>
             <BreadcrumbPage>
-              <Link href={`/${path}`}>{path}</Link>
+              <span> {path}</span>
             </BreadcrumbPage>
           </BreadcrumbItem>
         );
@@ -40,7 +40,7 @@ export default function DynamicBreadcrumb() {
     });
   }
   return (
-    <Breadcrumb className=" md:flex">
+    <Breadcrumb className="cursor-default md:flex">
       <BreadcrumbList>{createBreadcrumbs()}</BreadcrumbList>
     </Breadcrumb>
   );

@@ -34,22 +34,22 @@ export default async function Posts({ params }: { params: Params }) {
     .orderBy(desc(similarPost.similarity));
   if (postData.length === 0) noSimilarPosts = true;
 
-  const commentsData = await db
-    .select({
-      id: comment.id,
-      content: comment.content,
-      createdAt: comment.createdAt,
-      likes: comment.likes,
-      postId: comment.postId,
-      userId: comment.userId,
-      user: {
-        name: user.name,
-        avatarUrl: user.avatarUrl,
-      },
-    })
-    .from(comment)
-    .innerJoin(user, eq(comment.userId, user.id))
-    .where(eq(comment.postId, postData[0].id));
+  // const commentsData = await db
+  //   .select({
+  //     id: comment.id,
+  //     content: comment.content,
+  //     createdAt: comment.createdAt,
+  //     likes: comment.likes,
+  //     postId: comment.postId,
+  //     userId: comment.userId,
+  //     user: {
+  //       name: user.name,
+  //       avatarUrl: user.avatarUrl,
+  //     },
+  //   })
+  //   .from(comment)
+  //   .innerJoin(user, eq(comment.userId, user.id))
+  //   .where(eq(comment.postId, postData[0].id));
 
   function SimilarPosts() {
     if (noSimilarPosts === false) {
@@ -92,7 +92,7 @@ export default async function Posts({ params }: { params: Params }) {
           Similar posts
         </h2>
         <SimilarPosts />
-        <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight  ">
+        {/* <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight  ">
           Comments
         </h2>
         {commentsData.length === 0 && (
@@ -100,7 +100,7 @@ export default async function Posts({ params }: { params: Params }) {
             No comments yet. Be the first to comment.
           </h4>
         )}
-        <Comments initialComments={commentsData} />
+        <Comments initialComments={commentsData} /> */}
       </article>
     </>
   );

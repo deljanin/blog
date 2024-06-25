@@ -3,7 +3,7 @@
 ## TODO
 
 - [x] Make it deploy
-- [ ] Scaffold basic ui with mock data
+- [x] Scaffold basic ui with mock data
 
   - [x] Modify side nav (done for now)
   - [x] Modify top nav
@@ -12,12 +12,12 @@
     - [x] Comment section
   - [x] Topics page
   - [x] About page
-  - [ ] Topic/Search/Home page component with search feature
+  - [x] Topic/Search/Home page component with search feature
 
 - [x] Setup database
-- [ ] Attach database to UI
+- [x] Attach database to UI
 - [x] Update dynamic breadcrumbs
-- [ ] Add auth (clerk)
+- [ ] Add auth (clerk or next-auth)
 - [x] Routing/post page (parallel route?)
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
