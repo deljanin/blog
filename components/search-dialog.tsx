@@ -51,7 +51,7 @@ export default function SearchDialog({
   };
 
   return (
-    <div className="w-full flex-1 relative">
+    <div className="w-full flex flex-auto relative">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full outline-none">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

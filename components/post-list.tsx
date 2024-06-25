@@ -41,6 +41,7 @@ export default function PostList({
   useEffect(() => {
     setVisible(true);
   }, []);
+
   return (
     <div className={`flex flex-wrap justify-center gap-4 align-center w-full `}>
       {posts.map((post, index) => (

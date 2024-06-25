@@ -24,12 +24,13 @@
 - [ ] Meta tags
 - [ ] Update README
 - [ ] Add a notification and a reply systems. So that an Admin can reply to other users and then they get an email notification so that they come and check the reply.
+- [ ] Add footer
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-- Run the following in your terminal:
+- To clone the repository run the following in your terminal:
 
 ```bash
 git clone https://github.com/deljanin/blog.git
@@ -48,7 +49,7 @@ pnpm install
 bun install
 ```
 
-- Setup your postgres database, I used Vercel Serverless Postgres db.
+- Setup your postgres database. I used Vercel Serverless Postgres db.
 - Copy the database environment variables to the .env.local file in this format:
 
 ```
@@ -62,20 +63,21 @@ POSTGRES_PASSWORD="SECRET_DATA"
 POSTGRES_DATABASE="SECRET_DATA"
 ```
 
+- You will need to to these steps to setup the database schema correctly as I use vectors to store embeddings of the posts.
 - To copy the schema correctly to the database run this:
 
 ```bash
 npx drizzle-kit generate --custom
 ```
 
-- Then open the file listed in the terminal. (Should be in migrations/0000\_\*.sql)
+- Then open the file listed in the terminal. (It should be in migrations/0000\_\*.sql)
 - Paste this in it:
 
 ```sql
 CREATE EXTENSION vector;
 ```
 
-- Finally run:
+- Finally run this to copy the local schema to your database:
 
 ```bash
 npm run db:push

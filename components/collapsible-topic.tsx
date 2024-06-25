@@ -27,7 +27,13 @@ export interface Topic {
   threads: Thread[];
 }
 
-export default function CollapsibleTopic({ topic }: { topic: Topic }) {
+export default function CollapsibleTopic({
+  topic,
+  initialAnimationDelay = 0,
+}: {
+  topic: Topic;
+  initialAnimationDelay?: number;
+}) {
   const [isOpen, setIsOpen] = useState(true);
   const handleOpenChange = () => {
     setIsOpen(!isOpen);
@@ -38,7 +44,7 @@ export default function CollapsibleTopic({ topic }: { topic: Topic }) {
       key={topic.id}
       onOpenChange={handleOpenChange}
       id={topic.slug}
-      className="xl:w-3/4 p-4 space-y-2 xl:mx-auto animate-slide-in-bottom">
+      className="xl:w-3/4 p-4 space-y-2 xl:mx-auto  ">
       <div className="flex items-center justify-between space-x-4 px-4">
         <CollapsibleTrigger asChild>
           <Button
@@ -57,11 +63,16 @@ export default function CollapsibleTopic({ topic }: { topic: Topic }) {
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent className="flex justify-center flex-col gap-3">
-        {topic.threads.map((thread) => (
+        {topic.threads.map((thread, index) => (
           <Link
             href={`/topics/${thread.slug}`}
             key={thread.id}
-            className="w-full px-8 sm:mx-0">
+            className={`w-full px-8 sm:mx-0 opacity-0 animate-slide-in-bottom`}
+            style={
+              {
+                '--custom-delay': initialAnimationDelay + 0.2 * index + 's',
+              } as React.CSSProperties
+            }>
             <div className="rounded-md border px-4 py-3 min-h-40 sm:min-h-24 hover:border-primary hover:scale-105 transition-all">
               <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 {thread.title}

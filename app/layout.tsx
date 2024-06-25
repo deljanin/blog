@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Image from 'next/image';
-import SearchDialog from '@/components/search';
+import SearchDialog from '@/components/search-dialog';
 import {
   Home,
   Settings,
@@ -80,7 +80,7 @@ export default async function RootLayout({
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Home className="h-6 w-6" />
-              <span className="">Da blog</span>
+              <span className="">pd&apos;s blog</span>
             </Link>
           </div>
           <div className="flex-1">
