@@ -1,3 +1,4 @@
+// app/topics
 export const dynamic = 'force-dynamic';
 import CollapsibleTopic from '@/components/collapsible-topic';
 import { db } from '@/lib/drizzle/drizzleClient';
@@ -15,7 +16,7 @@ export default async function Topics() {
 
   return (
     <>
-      <h1 className="pt-10 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block">
+      <h1 className="pt-10 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1] md:block animate-fade-in">
         Topics
       </h1>
       {topics.map((topic) => (

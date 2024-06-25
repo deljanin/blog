@@ -75,7 +75,7 @@ export default async function RootLayout({
 
   function SideNav() {
     return (
-      <div className=" hidden border-r bg-muted/40 md:block">
+      <div className=" hidden border-r bg-muted/40 md:block animate-slide-in-left">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -129,14 +129,14 @@ export default async function RootLayout({
               })}
             </nav>
           </div>
-          <div className="mt-auto p-4">
+          {/* <div className="mt-auto p-4">
             <Link
               href="#"
               className="flex items-center gap-2 px-2 w-full text-lg font-semibold text-muted-foreground md:text-base">
               <Settings className="h-5 w-5 transition-all " />
               <span className="">Settings</span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -144,7 +144,7 @@ export default async function RootLayout({
 
   function TopNav() {
     return (
-      <header className="flex h-14 flex-shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+      <header className="flex h-14 flex-shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 animate-slide-in-top ">
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -252,7 +252,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="fixed inset-0 grid min-h-screen w-full md:grid-cols-[280px_1fr] ">
+          <div className="fixed inset-0 grid min-h-screen w-full md:grid-cols-[280px_1fr]">
             <SideNav />
             <div className="flex flex-col overflow-y-auto pb-16">
               <TopNav />

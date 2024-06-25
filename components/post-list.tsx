@@ -1,3 +1,4 @@
+'use client';
 import {
   Card,
   CardContent,
@@ -15,6 +16,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import trimString from '@/lib/utils/trimString';
+import { useEffect, useState } from 'react';
 
 type Post = {
   id: number;
@@ -27,13 +29,29 @@ type Post = {
 type PostListProps = {
   posts: Post[];
   breadcrumbs?: boolean;
+  initialAnimationDelay?: number;
 };
 
-export default function PostList({ posts, breadcrumbs = true }: PostListProps) {
+export default function PostList({
+  posts,
+  breadcrumbs = true,
+  initialAnimationDelay = 0,
+}: PostListProps) {
+  const [isVisible, setVisible] = useState(false);
+  useEffect(() => {
+    setVisible(true);
+  }, []);
   return (
-    <div className="flex flex-wrap justify-center gap-4 align-center w-full">
-      {posts.map((post) => (
-        <div key={post.id} className="w-[430px] mx-3 sm:mx-0 ">
+    <div className={`flex flex-wrap justify-center gap-4 align-center w-full `}>
+      {posts.map((post, index) => (
+        <div
+          key={post.id}
+          className={`w-[430px] mx-3 sm:mx-0 opacity-0 transition-all ${
+            isVisible ? 'opacity-100' : ''
+          }`}
+          style={{
+            transitionDelay: initialAnimationDelay + 0.2 * index + 's',
+          }}>
           <Link href={`/posts/${post.slug}`} key={post.id}>
             <Card className=" flex flex-col sm:aspect-square items-center overflow-hidden p-4 hover:scale-105 transition-all hover:border-primary">
               <CardHeader>

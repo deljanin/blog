@@ -82,7 +82,7 @@ export default async function Posts({ params }: { params: Params }) {
 
   return (
     <>
-      <article className="p-5 pt-10 lg:mx-auto max-w-2xl">
+      <article className="p-5 pt-10 lg:mx-auto max-w-2xl animate-fade-in">
         <Markdown
           className="prose dark:prose-invert "
           remarkPlugins={[remarkGfm]}>
@@ -92,6 +92,8 @@ export default async function Posts({ params }: { params: Params }) {
           Similar posts
         </h2>
         <SimilarPosts />
+
+        {/* TODO: Add comments */}
         {/* <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight  ">
           Comments
         </h2>

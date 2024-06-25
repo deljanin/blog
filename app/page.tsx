@@ -20,12 +20,12 @@ export default async function Home() {
     .orderBy(desc(post.createdAt))
     .limit(6);
   return (
-    <main className="pt-10 flex flex-col items-center justify-center gap-10 w-full ">
-      <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block bg-gradient-to-r from-purple-500 to-primary inline-block text-transparent bg-clip-text">
+    <main className="pt-10 flex flex-col items-center justify-center gap-10 w-full">
+      <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block bg-gradient-to-r from-purple-500 to-primary inline-block text-transparent bg-clip-text animate-fade-in">
         Latest posts
       </h1>
       <div className="flex flex-wrap justify-center gap-4 align-center w-full">
-        <PostList posts={posts} />
+        <PostList posts={posts} initialAnimationDelay={0.4} />
       </div>
     </main>
   );

@@ -1,3 +1,4 @@
+// app/topics/[slug]/page.tsx
 import PostList from '@/components/post-list';
 import { db } from '@/lib/drizzle/drizzleClient';
 import { post, thread, topic } from '@/lib/drizzle/schema';
@@ -15,6 +16,8 @@ export default async function Thread({ params }: { params: Params }) {
     .from(thread)
     .where(eq(thread.slug, params.slug));
   if (threadData.length === 0) return notFound();
+  const threads = threadData[0];
+
   const posts = await db
     .select()
     .from(post)
@@ -33,10 +36,12 @@ export default async function Thread({ params }: { params: Params }) {
   }
   return (
     <>
-      <h1 className="pt-10 pb-5 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block">
-        {threadData[0].title}
+      <h1 className="pt-10 pb-5 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1] md:block animate-fade-in">
+        {threads.title}
       </h1>
-      <p className="leading-7 text-center mb-5">{threadData[0].description}</p>
+      <p className="leading-7 text-center mb-5 animate-fade-in">
+        {threads.description}
+      </p>
       <Posts />
     </>
   );

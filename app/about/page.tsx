@@ -35,7 +35,7 @@ Thank you for visiting my blog. Let's learn and grow together!
 `;
 export default function About() {
   return (
-    <div className="p-5 lg:mx-auto max-w-2xl">
+    <div className="p-5 lg:mx-auto max-w-2xl animate-fade-in">
       <h1 className="pt-5 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]  md:block">
         About
       </h1>

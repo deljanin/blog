@@ -38,7 +38,7 @@ export default function CollapsibleTopic({ topic }: { topic: Topic }) {
       key={topic.id}
       onOpenChange={handleOpenChange}
       id={topic.slug}
-      className="xl:w-3/4 p-4 space-y-2 xl:mx-auto">
+      className="xl:w-3/4 p-4 space-y-2 xl:mx-auto animate-slide-in-bottom">
       <div className="flex items-center justify-between space-x-4 px-4">
         <CollapsibleTrigger asChild>
           <Button
