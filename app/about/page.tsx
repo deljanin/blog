@@ -1,35 +1,34 @@
 import Markdown from 'react-markdown';
-let about = `## About Me
+let about = `## About Wisdom Petals
 
-Greetings! I'm Petar Deljanin, a tech enthusiast, avid reader, and aspiring software developer. Welcome to my blog, where I document my journey as I explore new technologies, delve into books, and learn about business and life. 
+Welcome to Wisdom Petals! A space dedicated to tech enthusiasts, avid readers, and aspiring software developers. Here, we document our journey as we explore new technologies, delve into books, and learn about business and life.
 
 ## Purpose and Goals
 
-I started this blog to share my experiences and insights with like-minded individuals who are passionate about continuous learning and personal growth. My goal is to create a space where we can learn together and inspire each other and learn something new from each other, or from this blog itself.
+Wisdom Petals was created to share experiences and insights with like-minded individuals who are passionate about continuous learning and personal growth. Our goal is to create a space where we can learn together, inspire each other, and discover something new.
 
-## Topics I Cover
+## Topics Covered
 
-- **Technology**: From basics of programming languages and frameworks to the latest trends in the tech world.
-- **Books**: Reviews, summaries, and discussions on self help, spirituality and self-improvement, mostly.
-- **Business**: Insights into what I learn along the way from various sources.
+- **Technology**: From the basics of programming languages and frameworks to the latest trends in the tech world.
+- **Books**: Reviews, summaries, and discussions on self-help, spirituality, and self-improvement.
+- **Business**: Insights gathered from various sources on business topics.
 - **Life Lessons**: Learning how to play and hopefully beat the game of life.
 
 ## About the Project
 
 This blog is built using [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [shadcn-ui](https://ui.shadcn.com/), [Next server-less Postgres DB](https://vercel.com/storage/postgres), [Drizzle](https://orm.drizzle.team/) ORM, [Ollama](https://ollama.com/) and [Clerk](https://clerk.com/).
 
-I've integrated post recommendation using embeddings with llama3. With Ollama I created a list of recommended posts and when creating a new post I use cosine similarity with the embeddings to create a list of recommended posts. I took this idea from [here](https://simonwillison.net/2023/Oct/23/embeddings/).
+Post recommendation is integrated using embeddings with llama3. By leveraging Ollama, a list of recommended posts is created, and when crafting a new post, cosine similarity with embeddings generates a list of suggested posts. This idea was inspired by [Simon Willison](https://simonwillison.net/2023/Oct/23/embeddings/).
 
-You can find the source code and how to setup the project locally on the [github](https://github.com/deljanin/blog) repository of this blog.
+You can find the source code and setup instructions on the [GitHub repository](https://github.com/deljanin/blog) for this blog.
 
 ## Get in Touch
 
-Feel free to reach out to me via email at [petar@deljanin.dev](mailto:petar@deljanin.dev) or via my social media:
-- [LinkedIn](https://www.linkedin.com/in/petardeljanin)
-- [Instagram](https://www.instagram.com/petardeljanin/)
+Feel free to reach out via email at [petar@deljanin.dev](mailto:petar@deljanin.dev) or via social media:
+- [Instagram](https://www.instagram.com/wisdompetals/)
 
-I'm always open to feedback, collaborations, and discussions. 
-Thank you for visiting my blog. Let's learn and grow together!
+We are always open to feedback, collaborations, and discussions. Thank you for visiting Wisdom Petals. Let's learn and grow together!
+
 
 ---
 `;

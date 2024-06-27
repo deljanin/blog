@@ -39,7 +39,7 @@ export default async function Thread({ params }: { params: Params }) {
       <h1 className="pt-10 pb-5 text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1] md:block animate-fade-in">
         {threads.title}
       </h1>
-      <p className="leading-7 text-center mb-5 animate-fade-in">
+      <p className="leading-7 text-center mb-5 animate-fade-in lg:w-3/4 lg:mx-auto px-3">
         {threads.description}
       </p>
       <Posts />
