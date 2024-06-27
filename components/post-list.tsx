@@ -54,7 +54,7 @@ export default function PostList({
             transitionDelay: initialAnimationDelay + 0.2 * index + 's',
           }}>
           <Link href={`/posts/${post.slug}`} key={post.id}>
-            <Card className=" flex flex-col sm:aspect-square items-center overflow-hidden p-4 hover:scale-105 transition-all hover:border-primary">
+            <Card className=" flex flex-col sm:aspect-square overflow-hidden p-4 hover:scale-105 transition-all hover:border-primary">
               <CardHeader>
                 <CardTitle>{post.title}</CardTitle>
                 {breadcrumbs && (
