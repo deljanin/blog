@@ -20,7 +20,7 @@ export default function DynamicBreadcrumb({ pathNames }: Props) {
       if (index !== pathNames.length - 1) {
         return (
           <>
-            <BreadcrumbItem key={index}>
+            <BreadcrumbItem key={path}>
               <BreadcrumbLink asChild>
                 <span>{path}</span>
               </BreadcrumbLink>
@@ -30,7 +30,7 @@ export default function DynamicBreadcrumb({ pathNames }: Props) {
         );
       } else {
         return (
-          <BreadcrumbItem key={index}>
+          <BreadcrumbItem key={path}>
             <BreadcrumbPage>
               <span> {path}</span>
             </BreadcrumbPage>

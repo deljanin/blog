@@ -251,7 +251,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="fixed inset-0 grid min-h-screen w-full md:grid-cols-[280px_1fr]">
